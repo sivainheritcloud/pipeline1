@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+    <http:listener-config name="sample-project-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="8081" />
+    </http:listener-config>
+    <apikit:config name="sample-project-config" api="sample-project.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <flow name="sample-project-main" doc:id="d7644240-4c03-41ea-9899-059978917536">
+        <http:listener config-ref="sample-project-httpListenerConfig" path="/api/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body>#[payload]</http:body>
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:router config-ref="sample-project-config" />
+		<error-handler ref="common-error-handlerError_Handler" />
+    </flow>
+    <flow name="get:\employees:sample-project-config" doc:id="0aec539b-b9b3-4a69-a37d-d21f9da9969c">
+        <flow-ref doc:name="Flow Reference" doc:id="e62baf0a-fb72-42f9-9aa7-e6e682cf2157" name="Get_implementationSub_Flow"/>
+<!-- [STUDIO:"Transform Message"]		<ee:transform doc:name="Transform Message">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+&#45;&#45;-
+{
+  status: "success",
+  data: [
+    {
+      id: "1",
+      employee_name: "Tiger Nixon",
+      employee_salary: "320800"
+    }
+  &#93;
+}&#93;&#93;></ee:set-payload>
+            </ee:message>
+        </ee:transform> [STUDIO] -->
+    </flow>
+    <flow name="post:\employees:application\json:sample-project-config" doc:id="78747453-b32d-4b45-9f6e-9440ccc40add">
+        <flow-ref doc:name="Flow Reference" doc:id="911bcdc5-ba12-435f-891d-c284092269c2" name="Create_implementationSub_Flow"/>
+<!-- [STUDIO:"Transform Message"]		<ee:transform doc:name="Transform Message">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+&#45;&#45;-
+{
+  status: "success",
+  data: {
+    name: "test",
+    salary: "123",
+    id: "25"
+  }
+}&#93;&#93;></ee:set-payload>
+            </ee:message>
+        </ee:transform> [STUDIO] -->
+    </flow>
+</mule>

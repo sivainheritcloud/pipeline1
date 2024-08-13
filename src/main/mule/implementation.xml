@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="Get_implementationSub_Flow" doc:id="6088aca2-d584-4538-8d8d-93e30e1c89c0" >
+		<logger level="INFO" doc:name="Get_implementationSub_Flow started " doc:id="fe069858-c9a8-4bb3-8674-730c6301ab26" message="#[output application/json&#10;---&#10;attributes]"/>
+		<http:request method="GET" doc:name="Request" doc:id="450845c3-88a6-4cd4-9e9a-b4792e4cfc22" url="${secure::request.url}"/>
+		<ee:transform doc:name="filtering only some fields" doc:id="3c47efd7-f6d6-4772-b9d7-57271d071caa" >
+			<ee:message >
+				<ee:set-payload resource="dwlscripts/request_transform.dwl" />
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Get_implementationSub_Flow ended" doc:id="5a6a690b-ca9c-42c9-ad9a-d58b1140e2d4" message="#[output application/json&#10;---&#10;attributes]"/>
+	</sub-flow>
+	<sub-flow name="Create_implementationSub_Flow" doc:id="70f6bc01-b7a4-4a5d-9446-95c32fd7f900" >
+		<logger level="INFO" doc:name="Create_implementationSub_Flow started " doc:id="820285c1-1a80-4dfb-bcb5-a5694aaeb986" message="#[output application/json&#10;---&#10;attributes]"/>
+		<ee:transform doc:name="Transform Message" doc:id="58999878-c2f5-4d00-89c5-52c99e178b98" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	name: payload.name,
+	salary: payload.salary
+    
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<http:request method="POST" doc:name="Request" doc:id="8def7768-4fac-4d73-8075-d61ab2d1d9d4" url="https://dummy.restapiexample.com/api/v1/create"/>
+		<ee:transform doc:name="Transform Message" doc:id="5ff37c2a-a97f-47a6-93ef-2b1aa392a96f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload -- ["message"]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Create_implementationSub_Flow ended" doc:id="42736286-0114-4ef9-a666-2bbcfb5a1539" message="#[output application/json&#10;---&#10;attributes]"/>
+	</sub-flow>
+</mule>

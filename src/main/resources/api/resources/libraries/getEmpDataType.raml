@@ -1,0 +1,19 @@
+#%RAML 1.0 Library
+types:
+  get-emp-response:
+    type: object
+    properties:
+      status:
+        type: string
+      data:
+        type: array
+        items:
+            properties:
+              id:
+                type: string
+              employee_name:
+                type: string
+              employee_salary:
+                type: string    
+                  
+   

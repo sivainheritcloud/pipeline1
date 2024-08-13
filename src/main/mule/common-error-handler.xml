@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<error-handler name="common-error-handlerError_Handler" doc:id="946025a3-0bc0-4af6-8711-5ab53401d7d1" >
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="23527f70-085e-42bd-957f-c2d29871596d" type="APIKIT:BAD_REQUEST">
+			<ee:transform doc:name="Transform Message" doc:id="f248493f-e8e4-42bf-983b-9ea98eb62835" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable resource="dwlscripts/400-bad_request-error.dwl" variableName="error_mapping" />
+				</ee:variables>
+			</ee:transform>
+			<flow-ref doc:name="Flow Reference" doc:id="d3efb45e-405c-427a-83a3-ee837cd13922" name="common-error-handlerSub_Flow"/>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="aa0642aa-cf68-40e7-a99e-52ca6aed57e5" type="APIKIT:NOT_FOUND">
+			<ee:transform doc:name="Transform Message" doc:id="91186335-ead6-4156-b515-6bb42be00999" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable resource="dwlscripts/404-not_found-error.dwl" variableName="error_mapping" />
+				</ee:variables>
+			</ee:transform>
+			<flow-ref doc:name="Flow Reference" doc:id="3d7cb007-ce78-4243-a97d-c4fc4e74b049" name="common-error-handlerSub_Flow"/>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="3674e313-ea37-4117-a4f0-c4f68c0ca5c0" type="APIKIT:METHOD_NOT_ALLOWED">
+			<ee:transform doc:name="Transform Message" doc:id="c03f560e-83c7-4b8d-93fe-5c9ea066641a" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable resource="dwlscripts/405-method_not_allowed-error.dwl" variableName="error_mapping" />
+				</ee:variables>
+			</ee:transform>
+			<flow-ref doc:name="Flow Reference" doc:id="e332bfc3-9dc5-4ad9-b4d2-9b4513cf6d20" name="common-error-handlerSub_Flow"/>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="c604993f-292a-4f47-ac4f-decfc8fc7e7b" type="APIKIT:NOT_ACCEPTABLE">
+			<ee:transform doc:name="Transform Message" doc:id="15977c70-213e-4ff8-99f0-f9e3efc277bc" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable resource="dwlscripts/406-not_acceptable-error.dwl" variableName="error_mapping" />
+				</ee:variables>
+			</ee:transform>
+			<flow-ref doc:name="Flow Reference" doc:id="a850076e-1d4a-45d8-964b-eb39d848d1e0" name="common-error-handlerSub_Flow"/>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="8bac6c6d-3db2-4321-a1ab-30de4e76f3bf" type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+			<ee:transform doc:name="Transform Message" doc:id="23a3a8fd-40ce-4b82-b2f8-b2a15652e9d9" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable resource="dwlscripts/415-unsupported-media-error.dwl" variableName="error_mapping" />
+				</ee:variables>
+			</ee:transform>
+			<flow-ref doc:name="Flow Reference" doc:id="1260c507-04bc-4833-bcb6-0f3530a75a77" name="common-error-handlerSub_Flow"/>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="b61dd7a6-ccb0-4891-8f71-19a7be16cb30" type="APIKIT:NOT_IMPLEMENTED">
+			<ee:transform doc:name="Transform Message" doc:id="aded4dc4-bdf6-4b1c-b432-b808673b1bf7" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable resource="dwlscripts/501-not_implemented-error.dwl" variableName="error_mapping" />
+				</ee:variables>
+			</ee:transform>
+			<flow-ref doc:name="Flow Reference" doc:id="ca268cea-f74c-4d2f-b29c-66c5e3dc735c" name="common-error-handlerSub_Flow"/>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="5030950e-10a1-4737-b0b1-6aaee7267361" type="ANY">
+			<ee:transform doc:name="Transform Message" doc:id="ff7489d5-eb6a-450c-94f4-768c2ad29a11" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable resource="dwlscripts/any_error_response.dwl" variableName="error_mapping" />
+				</ee:variables>
+			</ee:transform>
+			<flow-ref doc:name="Flow Reference" doc:id="dd610798-7768-4904-9b4e-5fb168f00504" name="common-error-handlerSub_Flow"/>
+		</on-error-propagate>
+	</error-handler>
+	<sub-flow name="common-error-handlerSub_Flow" doc:id="1906ee5d-5c83-4374-8fc6-2ab1d9ba6dd1" >
+		<set-variable value="#[vars.error_mapping.http_status]" doc:name="Set Variable" doc:id="8b1d3686-2873-47e7-baa7-781e5c90a0e4" variableName="httpStatus"/>
+		<ee:transform doc:name="Transform Message" doc:id="d414509b-2f64-427f-996e-d85f80a9eedf" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	is_success: false,
+    errors:[
+    {
+        error_code: vars.error_mapping.error_code,
+        error_description: vars.error_mapping.error_description
+    }]
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+</mule>

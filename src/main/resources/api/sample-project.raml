@@ -1,0 +1,35 @@
+#%RAML 1.0
+title: sample-project
+baseUri: http://localhost:8081
+version: v1
+protocols:
+  - HTTP
+  - HTTPS
+
+traits:
+  headers: !include  /traits/trait.raml 
+
+resourceTypes:
+  collection: !include /resourceTypes/collection.raml
+
+uses:
+  getEmpDataType:  /resources/libraries/getEmpDataType.raml
+  postEmpDatatype: /resources/libraries/postEmpDataType.raml
+  errorDatatype:  /resources/libraries/errorDataTypes.raml
+    
+
+/employees:
+  is: [headers]
+  type:
+    collection:
+      get-response-schema: getEmpDataType.get-emp-response
+      get-response-example: !include /examples/responses/get_response_example.json
+
+      post-request-schema: postEmpDatatype.create-emp-request
+      post-request-example: !include /examples/request/create_request_example.json
+      post-response-schema: postEmpDatatype.create-emp-response
+      post-response-example: !include /examples/responses/create_response_example.json
+      errors-schema: errorDatatype.error
+  get:
+  post:  
+      

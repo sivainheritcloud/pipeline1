@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="implementation-suite.xml" />
+	<munit:test name="Get_implementationSub_Flow-test" doc:id="da71e01e-fbd1-4fbd-ac71-785dee5437d8" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Request" doc:id="48c40e9f-5777-40b3-9130-a6cd9314186e" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="450845c3-88a6-4cd4-9e9a-b4792e4cfc22" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json  --- readUrl('classpath://GetimplementationSubFlowtest\mock_payload.dwl')]" mediaType="application/json " encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://GetimplementationSubFlowtest\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://GetimplementationSubFlowtest\mock_variable_.dwl')]" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="ae529128-e81e-4325-b222-28ae5c632e59" >
+				<munit:payload value="#[output application/json  --- readUrl('classpath://GetimplementationSubFlowtest\set-event_payload.dwl')]" encoding="UTF-8" mediaType="application/json " />
+				<munit:attributes value="#[readUrl('classpath://GetimplementationSubFlowtest\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://GetimplementationSubFlowtest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to Get_implementationSub_Flow" doc:id="061bdbfa-05fc-4163-b94c-88f4daeb54d0" name="Get_implementationSub_Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="e42119f3-78be-4a8c-b4a6-1aef9e3b9812" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import GetimplementationSubFlowtest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="Create_implementationSub_Flow-test" doc:id="c741f68e-b422-4998-84bd-89fc3e11c21e" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Request" doc:id="b993f19d-1850-4010-819a-79ad8442171e" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="8def7768-4fac-4d73-8075-d61ab2d1d9d4" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json  --- readUrl('classpath://CreateimplementationSubFlowtest\mock_payload.dwl')]" mediaType="application/json " encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://CreateimplementationSubFlowtest\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://CreateimplementationSubFlowtest\mock_variable_.dwl')]" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="82bd9b3d-f2e7-4265-ad05-64c60fd16634" >
+				<munit:payload value="#[output application/json  --- readUrl('classpath://CreateimplementationSubFlowtest\set-event_payload.dwl')]" encoding="UTF-8" mediaType="application/json " />
+				<munit:attributes value="#[readUrl('classpath://CreateimplementationSubFlowtest\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://CreateimplementationSubFlowtest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to Create_implementationSub_Flow" doc:id="b2021fbb-1319-42fe-9631-ad6cb7cd44ec" name="Create_implementationSub_Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="a7b66b9e-6817-4722-9fd1-da50d627466f" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import CreateimplementationSubFlowtest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="Get_implementationSub_Flow-test1" doc:id="e6e3d489-bb8e-4003-b8f9-da5157e1d59a" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Request" doc:id="30ba282e-c22a-4694-8ae2-c7264fe1d5fb" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="450845c3-88a6-4cd4-9e9a-b4792e4cfc22" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json  --- readUrl('classpath://GetimplementationSubFlowtest1\mock_payload.dwl')]" mediaType="application/json " encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://GetimplementationSubFlowtest1\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://GetimplementationSubFlowtest1\mock_variable_.dwl')]" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="5bddba6a-9eb7-4a78-ac5a-a5f6e61cab10" >
+				<munit:payload value="#[output application/json  --- readUrl('classpath://GetimplementationSubFlowtest1\set-event_payload.dwl')]" encoding="UTF-8" mediaType="application/json " />
+				<munit:attributes value="#[readUrl('classpath://GetimplementationSubFlowtest1\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://GetimplementationSubFlowtest1\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to Get_implementationSub_Flow" doc:id="b9f5ca8f-24dc-4522-9cab-ff442f71dfd1" name="Get_implementationSub_Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="becfe132-e8ec-4705-91fb-fff56c9d05b1" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import GetimplementationSubFlowtest1::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="Create_implementationSub_Flow-test1" doc:id="f61a491e-0fee-4391-978e-5a637d214fcf" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Request" doc:id="67c84450-58a8-4808-beb8-73d4c4a8b643" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="8def7768-4fac-4d73-8075-d61ab2d1d9d4" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json  --- readUrl('classpath://CreateimplementationSubFlowtest1\mock_payload.dwl')]" mediaType="application/json " encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://CreateimplementationSubFlowtest1\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://CreateimplementationSubFlowtest1\mock_variable_.dwl')]" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="60d63235-7a95-4431-86d3-c50f867f1b41" >
+				<munit:payload value="#[output application/json  --- readUrl('classpath://CreateimplementationSubFlowtest1\set-event_payload.dwl')]" encoding="UTF-8" mediaType="application/json " />
+				<munit:attributes value="#[readUrl('classpath://CreateimplementationSubFlowtest1\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://CreateimplementationSubFlowtest1\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to Create_implementationSub_Flow" doc:id="ac5fd5b9-dbb3-4abc-842b-ba279f17b43a" name="Create_implementationSub_Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="f46eb514-4e6a-45a6-acb5-10b6090554d3" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import CreateimplementationSubFlowtest1::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

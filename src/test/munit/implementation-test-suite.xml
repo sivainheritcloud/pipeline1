@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="implementation-test-suite.xml" />
+<!-- [STUDIO:"implementation-test-suite-Get_implementationSub_FlowTest"]	<munit:test name="implementation-test-suite-Get_implementationSub_FlowTest" doc:id="5a5455e8-e8a6-4f17-a6f2-ecfa39585ee8" description="Test" ignore="true">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="607a1ab0-cc58-4e75-a5ab-3ff29da345a5" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="450845c3-88a6-4cd4-9e9a-b4792e4cfc22" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[readUrl("classpath://MGetimplementationsubflowtest\mock_payload.dwl")&#93;' />
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+					<munit-tools:attributes value='#[readUrl("classpath://MGetimplementationsubflowtest\mock_attributes.dwl")&#93;' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Event" doc:id="db22cfa3-2d40-45e2-b50b-a673713d4e17" >
+				<munit:attributes value='#[readUrl("classpath://MGetimplementationsubflow\set-event-attributes.dwl")&#93;' />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to Get_implementationSub_Flow" doc:id="ed489d94-25dd-4608-9f1c-5812396feff9" name="Get_implementationSub_Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="b5eaab21-d5b7-4a9c-b1dc-fbbf8c562a66" >
+				<munit-tools:that ><![CDATA[#[import * from dw::test::Asserts 
+import MGetimplementationsubflowtest::assert_expression_payload
+ &#45;&#45;-
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})&#93;&#93;&#93;></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test> [STUDIO] -->
+<!-- [STUDIO:"implementation-test-suiteTest"]	<munit:test name="implementation-test-suiteTest" doc:id="e54bdda4-3c7a-4f57-9d1f-525ac7655e81" expectedErrorType="APIKIT:BAD_REQUEST" ignore="true">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="c1f02ae0-7390-4d6d-9f3e-b3eb00f73e03" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sample-project-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="2d506d23-783d-4596-87b0-6d4b6aed965e" name="sample-project-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="b8a7126a-a7d0-432b-8159-d9396142ad03" />
+		</munit:validation>
+	</munit:test> [STUDIO] -->
+	<munit:test name="implementation-test-suite-Get_implementationSub_FlowTest1" doc:id="b90a580a-9e17-4608-8761-839b0555c511" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="3111fe69-0337-4685-91e2-06672a50de9f" processor="http:request" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="450845c3-88a6-4cd4-9e9a-b4792e4cfc22" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[readUrl("classpath://MGetimplementationsubflowtest\mock_payload.dwl")]' />
+					<munit-tools:attributes value='#[readUrl("classpath://MGetimplementationsubflowtest\mock_attributes.dwl")]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Event" doc:id="5bbe4cf0-4bc9-44c4-a0f3-8dec19e59e1b" >
+				<munit:attributes value='#[readUrl("classpath://MGetimplementationsubflowtest\set-event-attributes.dwl")]' />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to Get_implementationSub_Flow" doc:id="57d09f80-0706-49f7-a12f-3896e59cdb2b" name="get:\employees:sample-project-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="7d129bf2-70dc-40b3-9a58-9b26c65502a2" >
+				<munit-tools:that ><![CDATA[#[import * from dw::test::Asserts 
+import MGetimplementationsubflowtest::assert_expression_payload
+ ---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suite-Create_implementationSub_FlowTest" doc:id="7f150286-d26c-482f-9d7d-ae3b61b48c9d" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="a3aa97ea-63ed-46a8-9038-8738b91e0db4" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Request" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[output application/json ---&#10;readUrl("classpath://MCreateimplementationsubflowtest\mock_payload.dwl")]' />
+					<munit-tools:attributes value='#[readUrl("classpath://MCreateimplementationsubflowtest\mock_attributes.dwl")]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Event" doc:id="5372e5c2-b22b-43a8-9552-e3c94d5f2100" >
+				<munit:payload value='#[readUrl("classpath://MCreateimplementationsubflowtest\set-event_payload.dwl")]' />
+				<munit:attributes value='#[readUrl("classpath://MCreateimplementationsubflowtest\set-event_attributes.dwl")]' />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to Create_implementationSub_Flow" doc:id="45630a51-6fbf-4c1c-9ede-017bf53f48dc" name="post:\employees:application\json:sample-project-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="498ad0e0-cfc8-4daa-bf94-421327d1ff24" >
+				<munit-tools:that ><![CDATA[#[import * from dw::test::Asserts 
+import MCreateimplementationsubflowtest::assert_expression_payload
+ ---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		
+</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suiteTest" doc:id="6e28b3ea-9177-4770-ad39-33bad78db1cc" expectedErrorType="APIKIT:BAD_REQUEST">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:BAD_REQUEST" doc:id="e98ccbd1-56b6-4f68-b733-d7f443311af4" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sample-project-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="80c9eee4-33b7-4ec5-a353-a9074379fdd5" name="sample-project-main"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="ab124a76-3018-4061-9bd2-926433b13a2b" is="#[MunitTools::equalTo(400)]" expression="#[attributes.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suiteTest1" doc:id="61f54fff-a050-4fad-9664-97dbb701db1d" expectedErrorType="APIKIT:NOT_FOUND">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_FOUND" doc:id="3eaa9240-ab38-4799-a1e5-d7fb4ed447b1" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sample-project-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="cb38f331-f3f9-4ac9-b451-830c6bbd7ad2" name="sample-project-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="8fba93e9-39c9-4672-85f9-d2802fb06e40" is="#[MunitTools::equalTo(404)]" expression="#[attributes.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suiteTest2" doc:id="aef98937-d803-49d5-827b-f6e023ebed2c" expectedErrorType="APIKIT:METHOD_NOT_ALLOWED">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:METHOD_NOT_ALLOWED" doc:id="a6379e44-2ed5-4e62-9486-b098de512729" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sample-project-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="5494212f-0b41-447d-a3fe-a5b0e44e430a" name="sample-project-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="413dda8e-c3f1-414d-bd18-587fb30fe78a" is="#[MunitTools::equalTo(405)]" expression="#[attributes.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suiteTest3" doc:id="6316c547-a4a5-4738-9c45-c63537f31d3b" expectedErrorType="APIKIT:NOT_ACCEPTABLE">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_ACCEPTABLE" doc:id="5b8b150f-3ac0-4b4e-b180-665e26ed7f68" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sample-project-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="27d38901-6ffd-45f2-a363-105fd72edc42" name="sample-project-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="3d79145c-4b50-4efc-b3e0-36f27fc6513a" is="#[MunitTools::equalTo(406)]" expression="#[attributes.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suiteTest4" doc:id="cc20c7ad-5284-4995-9ae5-1eb251293e2a" expectedErrorType="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:UNSUPPORTED_MEDIA_TYPE" doc:id="9f0c6077-5253-4d53-88f2-3deea66b35a7" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sample-project-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="ce19a200-d30e-4213-ba40-5b3f89c81d84" name="sample-project-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="6b93a326-e6e3-49d4-a886-6faef9f1fc4e" is="#[MunitTools::equalTo(415)]" expression="#[attributes.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suiteTest5" doc:id="49cd4c9a-1ce7-4bb3-9d06-3660842f5b49" expectedErrorType="APIKIT:NOT_IMPLEMENTED">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_IMPLEMENTED" doc:id="1d9e42dd-2c28-4a0a-9cdb-d3340404b42d" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sample-project-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="30b35edb-4bb7-4bed-bdfc-e512102bd93a" name="sample-project-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="3f489197-ee5b-4919-9027-30cedff4f886" is="#[MunitTools::equalTo(501)]" expression="#[attributes.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suiteTest6" doc:id="b2e7b6e3-7750-46d8-8878-fe4ee4a27332" expectedErrorType="APIKIT:ANY">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:ANY" doc:id="90ec9696-a314-491f-8456-7efd3310d3cf" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sample-project-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:ANY" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="75a65eb2-83e9-461c-be05-ef418eef93ed" name="sample-project-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="7d619195-a97b-455b-bccd-8976247cbcea" is="#[MunitTools::equalTo(500)]" expression="#[attributes.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
