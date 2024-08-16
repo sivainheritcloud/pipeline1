@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building...'
                 // Example for a Maven project
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
 }
